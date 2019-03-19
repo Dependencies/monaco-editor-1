@@ -7,8 +7,8 @@
   "scripts": {
     "build:standalone": "cross-env NODE_ENV=production webpack --config webpack.config.standalone && npm run typings:standalone",
     "build:external": "cross-env NODE_ENV=production webpack --config webpack.config.external && npm run typings:external",
-    "typings:standalone": "./scripts/generate-typings dist/standalone/index.d.ts",
-    "typings:external": "./scripts/generate-typings dist/external/index.d.ts",
+    "typings:standalone": "node ./scripts/generate-typings dist/standalone/index.d.ts",
+    "typings:external": "node ./scripts/generate-typings dist/external/index.d.ts",
     "build": "npm run clean && npm run build:standalone && npm run build:external",
     "clean": "del dist",
     "prepublish": "npm run build"
