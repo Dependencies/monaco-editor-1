@@ -12,7 +12,7 @@
 	url = https://github.com/Microsoft/monaco-languages.git
 [submodule "monaco-typescript"]
 	path = submodules/monaco-typescript
-	url = https://github.com/Microsoft/monaco-typescript.git
+url=https://github.com/data-forge-notebook/monaco-typescript
 [submodule "vscode"]
 	path = submodules/vscode
 	url = https://github.com/Microsoft/vscode.git
