@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = function createConfig(paths, { outputPath, inline, library }) {
   return {
     mode: "development",
-    target: 'web',
+    target: 'electron-renderer',
     devtool: 'source-map',
     output: {
       path: outputPath,
@@ -31,7 +31,7 @@ module.exports = function createConfig(paths, { outputPath, inline, library }) {
         // HACK: Prevent runtime error when importing unused "fs" module
         fs: require.resolve('./stub'),
         // HACK: Pending resolution of https://github.com/evanw/node-source-map-support/pull/198
-        'source-map-support': require.resolve('source-map-support/browser-source-map-support'),
+        //'source-map-support': require.resolve('source-map-support/browser-source-map-support'),
       },
       extensions: ['.ts', '.js', '.json'],
     },
@@ -99,7 +99,7 @@ module.exports = function createConfig(paths, { outputPath, inline, library }) {
       // Create contexts for runtime require expressions
       ...getDynamicRequireContextPlugins(paths.contexts),
       // HACK: Required for ts-loader to work correctly within webpack v4
-      new webpack.LoaderOptionsPlugin({ options: {} }),
+      //new webpack.LoaderOptionsPlugin({ options: {} }),
       ...(inline ? [] : [new MiniCssExtractPlugin({ filename: `${library}.css` })]),
       new ProgressBarPlugin(),
     ],

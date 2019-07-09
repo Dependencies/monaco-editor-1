@@ -5,8 +5,8 @@
   "main": "dist/standalone/index.js",
   "typings": "dist/standalone/index.d.ts",
   "scripts": {
-    "build:standalone": "cross-env NODE_ENV=production webpack --config webpack.config.standalone && npm run typings:standalone",
-    "build:external": "cross-env NODE_ENV=production webpack --config webpack.config.external && npm run typings:external",
+    "build:standalone": "cross-env NODE_ENV=development webpack --config webpack.config.standalone && npm run typings:standalone",
+    "build:external": "cross-env NODE_ENV=development webpack --config webpack.config.external && npm run typings:external",
     "typings:standalone": "node ./scripts/generate-typings dist/standalone/index.d.ts",
     "typings:external": "node ./scripts/generate-typings dist/external/index.d.ts",
     "build": "npm run clean && npm run build:standalone",
