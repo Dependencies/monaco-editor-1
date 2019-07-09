@@ -1,12 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const escapeStringRegexp = require('escape-string-regexp');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function createConfig(paths, { outputPath, inline, library }) {
   return {
+    mode: "development",
     target: 'web',
     devtool: 'source-map',
     output: {
@@ -46,10 +46,10 @@ module.exports = function createConfig(paths, { outputPath, inline, library }) {
           use: (inline ? [
             { loader: 'style-loader' },
             { loader: 'css-loader' },
-          ] : ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: 'css-loader',
-          })),
+          ] : [
+            { loader: MiniCssExtractPlugin.loader },            
+            { loader: 'css-loader' },
+          ]),
         },
         {
           test: /\.(png|jpg|gif|svg|ttf|otf|eot|woff|woff2)$/,
@@ -100,11 +100,7 @@ module.exports = function createConfig(paths, { outputPath, inline, library }) {
       ...getDynamicRequireContextPlugins(paths.contexts),
       // HACK: Required for ts-loader to work correctly within webpack v4
       new webpack.LoaderOptionsPlugin({ options: {} }),
-      ...(inline ? [] : [new ExtractTextPlugin(`${library}.css`)]),
-      new UglifyJsPlugin({
-        parallel: true,
-        sourceMap: true,
-      }),
+      ...(inline ? [] : [new MiniCssExtractPlugin({ filename: `${library}.css` })]),
       new ProgressBarPlugin(),
     ],
   };
