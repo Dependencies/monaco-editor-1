@@ -107,7 +107,7 @@ module.exports = {
         'vs/language/css/cssWorker': getSubmodulePath('monaco-css/src/cssWorker.ts'),
         'vs/language/html/htmlWorker': getSubmodulePath('monaco-html/src/htmlWorker.ts'),
         'vs/language/json/jsonWorker': getSubmodulePath('monaco-json/src/jsonWorker.ts'),
-        'vs/language/typescript/src/worker': getSubmodulePath('monaco-typescript/src/tsWorker.ts'),
+        'vs/language/typescript/tsWorker': getSubmodulePath('monaco-typescript/src/tsWorker.ts'),
       },
     },
     {
